@@ -1,0 +1,81 @@
+
+# Description:  This program will allow the user to
+#               determine the cost of sending out coffee.
+
+def shipping_cost(shipping_choice, handling):
+
+    # Ask user to choose type of coffee
+    if shipping_choice == 1:
+        return 20+handling
+    elif shipping_choice == 2:
+        return 13+handling
+    else:
+        return 0+handling
+
+def tax(state):
+
+    # Ask user to input the states that user is in
+    if state.lower()== "washington" or state.lower()== "california" or state.lower()== "texas":
+        tax = 0.09
+    elif state.lower()=="oregon" or state.lower()=="florida":
+        tax = 0
+    else:
+        tax = 0.07
+    return tax
+
+def subtotal(jb, pj, coffee_choice, pounds, tax, shipping, payment_choice):
+
+    # Calculate the subtotal
+    if coffee_choice==1:
+        cost = jb*pounds
+    else:
+        cost = pj*pounds
+    cost += shipping
+    cost += tax*cost
+
+    if payment_choice==1:
+        cost += 0.03*cost
+    elif payment_choice ==2:
+        cost += 0.05*cost
+    else:
+        cost -= 0.02*cost
+    return cost
+
+jb = 10.5 #price of jonestown brew
+pj = 16.95 #price of plymouth jolt
+shipping = 0.93
+handling = 2.5
+
+
+def main():
+    # Ask to choice coffee
+    coffee_choice = input("Enter 1 for jonestown brew and 2 for plymouth jolt: ")
+    while coffee_choice != 1 and coffee_choice!= 2:
+        print ("Please enter a valid option.\n\n")
+        coffee_choice = input("Enter 1 for jonestown brew and 2 for plymouth jolt: ")
+
+    # Ask pounds of coffee
+    pounds = input("Enter the amount of coffee you want to order in pounds: ")
+    if type(pounds) != float and type(pounds) != int:
+        print ("Please enter a valid option.\n\n")
+        pounds = input("Enter the amount of coffee you want to order in pounds: ")
+
+    # Ask for States
+    state = input("Please enter your state: ")
+
+    # Ask for delivery cost
+    shipping_choice = input("Enter 1 for overnight, 2 for 2-day and 3 for standard: ")
+    while shipping_choice !=1 and shipping_choice !=2 and shipping_choice !=3: 
+        print ("Please enter a valid option.\n\n")
+        shipping_choice = input("Enter 1 for overnight, 2 for 2-day and 3 for standard: ")
+
+    # Ask for Payment method
+    payment_choice = input("Enter 1 for payment through paypal, 2 for credit cards and 3 for check: ")
+    while payment_choice !=1 and payment_choice !=2 and payment_choice !=3:
+        print ("Please enter a valid option.\n\n")
+        payment_choice = input("Enter 1 for payment through paypal, 2 for credit cards and 3 for check: ")
+
+print("subtotal(jb, pj, coffee_choice, pounds, tax(state), shipping_cost(shipping, handling), payment_choice")
+
+main()
+
